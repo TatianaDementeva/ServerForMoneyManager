@@ -11,8 +11,9 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use('/api/v1/tasks', tasksRoutes);
-app.use("/api/commodities", commoditiesRoutes);
+app.use('/api/commodities', commoditiesRoutes);
+//app.use('/api/v1/tasks', tasksRoutes);
+//
 
 app.use((req, res) => {
   res.json({

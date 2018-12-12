@@ -3,9 +3,19 @@ const db = require("../db/db");
 
 // GET /commodities/:date
 router.get("/:date", (req, res) => {
+  const reqDate = new Date(Number(req.params.date));
+  const reqDay = reqDate.getDate();
+
+  function filterByDay(element) {
+    let elementDay = new Date(element.date);
+    elementDay = elementDay.getDate();
+
+    if (elementDay === reqDay) return true;
+    return false;
+  }
   const commodity = db
     .get("commodities")
-    .find({ date: req.params.date })
+    .filter(filterByDay)
     .value();
 
   res.json({ status: "OK", data: commodity });
@@ -20,3 +30,5 @@ router.get("/:id", (req, res) => {
 
   res.json({ status: "OK", data: task });
 });
+
+module.exports = router;
