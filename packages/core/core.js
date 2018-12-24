@@ -5,13 +5,15 @@ const bodyParser = require("body-parser");
 const error = require("../error/error");
 const tasksRoutes = require("../tasks/tasks");
 const commoditiesRoutes = require("../commodities/commodities");
+const tags = require("../tags/tags");
 const app = express();
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/api/commodities', commoditiesRoutes);
+app.use("/api/commodities", commoditiesRoutes);
+app.use("/api/tags", tags);
 //app.use('/api/v1/tasks', tasksRoutes);
 //
 
